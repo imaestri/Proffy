@@ -1,44 +1,16 @@
 import express from "express";
-import db from "./database/connection";
+import ClassesController from "./controllers/ClassesController";
+import ConnectionsController from "./controllers/ConnectionsController";
+
 
 const routes = express.Router();
-interface ScheduleItem {
-    week_day: number;
-    from: string;
-    to: string;
-}
+const classesControllers = new ClassesController();
+const connectionsControllers = new ConnectionsController();
 
-routes.post("/classes", async (request, response) => {
-  const { name, avatar, whatsapp, bio, subject, cost, schedule } = request.body;
+routes.post("/classes", classesControllers.create);
+routes.get("/classes", classesControllers.index);
 
-  const insertedUsersIds = await db("users").insert({
-    name,
-    avatar,
-    whatsapp,
-    bio,
-  });
-
-  const user_id = insertedUsersIds[0];
-
-  const insertedClassesIds = await db("classes").insert({
-    subject,
-    cost,
-    user_id,
-  });
-
-  const class_id = insertedClassesIds[0];
-
-  const classSchedule = schedule.map((scheduleItem: ScheduleItem) => {
-      return {
-          week_day: scheduleItem.week_day,
-          from: 
-          to:
-      }
-  })
-
-
-
-  return response.send();
-});
+routes.post("/connections", connectionsControllers.create);
+routes.get("/connections", connectionsControllers.index);
 
 export default routes;
