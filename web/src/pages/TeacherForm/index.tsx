@@ -3,8 +3,10 @@ import PageHeader from '../../components/pageHeader'
 
 import './styles.css';
 import Input from '../../components/Input';
+import Select from '../../components/Select';
 
 import WarningIcon from '../../assets/images/icons/warning.svg';
+import Textarea from '../../components/TextArea';
 
 export default function TeacherForm() {
     return (
@@ -17,19 +19,58 @@ export default function TeacherForm() {
                 <main>
                     <fieldset>
                         <legend> Seus dados</legend>
-                        <Input  name="name" label="Nome Completo"/>
-                        <Input  name="avatar" label="avatar"/>
-                        <Input  name="whatsapp" label="whatsapp"/>
+                        <Input name="name" label="Nome Completo" />
+                        <Input name="avatar" label="avatar" />
+                        <Input name="whatsapp" label="whatsapp" />
+                        <Textarea name="bio" label="Biografia" />
                     </fieldset>
                     <fieldset>
                         <legend> Sobre a Aula</legend>
-                        <Input  name="subject" label="Matéria"/>
-                        <Input  name="cost" label="Custa da sua hora por aula"/>
+                        <Select
+                            name="subject"
+                            label="Matéria"
+                            options={[
+                                { value: 'Artes', label: 'Artes' },
+                                { value: 'Matemática', label: 'Matemática' },
+                                { value: 'Ciências', label: 'Ciências' },
+                                { value: 'Física', label: 'Física' },
+                                { value: 'Biologia', label: 'Biologia' },
+                                { value: 'Português', label: 'Português' },
+                                { value: 'Filosofia', label: 'Filosofia' },
+                                { value: 'Inglês', label: 'Inglês' },
+                                { value: 'Química', label: 'Química' },
+                            ]}
+                        />
+                        <Input name="cost" label="Custa da sua hora por aula" />
+                    </fieldset>
+                    <fieldset>
+                        <legend>
+                            Horários Disponíveis
+                        <button type="button">+ Novo Horário</button>
+                        </legend>
+                        <div className="schedule-item">
+                            <Select
+                                name="week_day"
+                                label="Dia da Semana"
+                                options={[
+                                    { value: '0', label: 'Domingo' },
+                                    { value: '1', label: 'Segunda-feira' },
+                                    { value: '2', label: 'Terça-feira' },
+                                    { value: '3', label: 'Quarta-feira' },
+                                    { value: '4', label: 'Quinta-feira' },
+                                    { value: '5', label: 'Sexta-feira' },
+                                    { value: '6', label: 'Sábado' },
+                                ]}
+                            />
+                            <Input name="from" label="Das" type="time" />
+                            <Input name="TO" label="Até" type="time" />
+                            
+                        </div>
                     </fieldset>
                     <footer>
                         <p>
-                            <img src={WarningIcon} alt="Aviso importante"/>
-                            Importante! <br/>
+                            <img src={WarningIcon} alt="Aviso importante" />
+                            Importante! <br />
                             Preencha todos os dados
                         </p>
                         <button type="button">
