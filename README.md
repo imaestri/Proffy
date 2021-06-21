@@ -1,2 +1,2 @@
 
-#Proffy! Plataforma de estudos online.
+Proffy! Plataforma de estudos online.
